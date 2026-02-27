@@ -52,6 +52,72 @@ npm run dev
 
 ## What technologies are used for this project?
 
+## Design tokens & layout
+
+This project follows a strict 8‑pixel grid for spacing and layout.  The Tailwind
+configuration has been adjusted so that `1` unit of spacing (`p-1`, `m-1`,
+`gap-1`, etc.) equals **0.5 rem (8 px)**, with larger values scaling linearly.  As
+a result, all existing spacing utilities should now align to the 8 px baseline.
+
+Border radius is standardized at **12 px** across components; the CSS variable
+`--radius` (used by the theme for `rounded-lg` and friends) has been updated to
+`0.75rem`.  Finally, box‑shadow values are fixed in the Tailwind config to a
+small, medium, large and so on set of predefined, non‑changing shadows.
+
+These rules give the UI consistent rhythms and make it easier to create new
+layouts and components that automatically follow the design system.
+
+### Typography
+
+### Dynamic background image
+
+A global CSS variable `--background-url` is used to control the background of
+the main content wrapper.  At build time the variable is populated from an
+environment value named **VITE_BACKGROUND_URL** (string containing the image
+URL).
+
+By default the `AppLayout` component will read that value and apply
+`background-image: url(...)` with `background-size: cover` and
+`background-position: center`.  You can configure it via your `.env` file or
+through Vercel/Lovable environment settings.
+
+Example `.env` file for light/dark backgrounds:
+
+```
+VITE_BACKGROUND_URL_LIGHT=https://i.ibb.co/3Yh6ZpBJ/5226644.jpg
+VITE_BACKGROUND_URL_DARK=https://example.com/dark-bg.jpg
+```
+
+(The legacy `VITE_BACKGROUND_URL` still maps to the light image.)
+
+Header and footer remain glasmorphic panels that float above the background.
+
+When the user toggles light/dark mode, the image will softly cross‑fade
+thanks to a small transition applied to the main container.
+
+### Typography
+
+The application now uses the operating system’s native font stack. On macOS
+and iOS this resolves to **San Francisco Pro** (SF Pro Text/Display); other
+environments fall back to Helvetica/Arial/sans-serif.  You should not need to
+fetch or bundle any external font files.
+
+### Glass‑style cards
+
+Based on the screenshot you provided, we also expose a pair of helpers for
+creating the “glassmorphic” card look:
+
+- `glass-card` – applies the dark‑mode background, 10px blur, 1px border,
+  18px radius and fixed shadow.
+- `.light .glass-card` – light mode overrides for higher background opacity and
+  a darker border.
+- `glass-card-gradient` – optional gradient overlay (linear 145° white at very
+  low opacity) for a subtle premium effect.
+
+The card radius is intentionally larger than the global 12px base; this keeps
+regular buttons/forms snug while giving content panels more breathing room.
+
+
 This project is built with:
 
 - Vite

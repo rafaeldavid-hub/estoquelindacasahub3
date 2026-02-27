@@ -18,8 +18,26 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        // use the macOS / iOS system font stack which resolves to SF Pro
+        // when available. keep fallbacks for other platforms.
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'SF Pro Text',
+          'SF Pro Display',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+        ],
+        display: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'SF Pro Text',
+          'SF Pro Display',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+        ],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -96,8 +114,38 @@ export default {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
+        md: "var(--radius)",
+        xl: "var(--radius)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      /* enforce 8px spacing grid by remapping the spacing scale */
+      spacing: {
+        px: "1px",
+        0: "0px",
+        /* 1 unit = 0.5rem (8px) */
+        0.5: "0.125rem", // keeps the tiny step if needed
+        1: "0.5rem",     // 8px
+        2: "1rem",       // 16px
+        3: "1.5rem",     // 24px
+        4: "2rem",       // 32px
+        5: "2.5rem",     // 40px
+        6: "3rem",       // 48px
+        7: "3.5rem",     // 56px
+        8: "4rem",       // 64px
+        9: "4.5rem",     // 72px
+        10: "5rem",      // 80px
+        /* add more steps as needed */
+      },
+      /* define a set of fixed shadows for consistency */
+      boxShadow: {
+        sm: "0 1px 2px rgba(0,0,0,0.05)",
+        DEFAULT: "0 1px 3px rgba(0,0,0,0.1)",
+        md: "0 4px 6px rgba(0,0,0,0.1)",
+        lg: "0 10px 15px rgba(0,0,0,0.1)",
+        xl: "0 20px 25px rgba(0,0,0,0.1)",
+        "2xl": "0 25px 50px rgba(0,0,0,0.25)",
+        inner: "inset 0 2px 4px rgba(0,0,0,0.06)",
+        none: "none",
       },
       keyframes: {
         "accordion-down": {

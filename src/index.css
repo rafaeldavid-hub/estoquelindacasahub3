@@ -1,10 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* using the platform’s system font (SF Pro on Apple devices) via Tailwind
+   stack; no external web font is required */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* smooth crossfade when the main background changes with theme */
+  .bg-transition {
+    transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 8%;
@@ -34,7 +40,18 @@
     --input: 0 0% 95%;
     --ring: 45 95% 35%;
 
-    --radius: 0.625rem;
+    /* base border radius used throughout the app (12px) */
+    --radius: 0.75rem; /* 12px - global border radius */
+    /* card-specific radius used by glass-card components */
+    --card-radius: 1.125rem; /* 18px */
+    /* glassmorphic card colors */
+    --card-bg-dark: rgba(255,255,255,0.04);
+    --card-border-dark: rgba(255,255,255,0.08);
+    --card-bg-light: rgba(255,255,255,0.65);
+    --card-border-light: rgba(0,0,0,0.08);
+    --card-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    /* optional gradient overlay on cards */
+    --card-gradient: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 15%;
@@ -61,6 +78,26 @@
     --ordered-foreground: 0 0% 8%;
     --reserved: 0 0% 38%;
     --reserved-foreground: 0 0% 100%;
+  }
+
+  /* glass-card utility for the new 'ideal' look shown in the screenshot */
+  @layer components {
+    .glass-card {
+      background: var(--card-bg-dark);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border-dark);
+      box-shadow: var(--card-shadow);
+      border-radius: var(--card-radius);
+    }
+    /* light mode variant overrides only where necessary */
+    .light .glass-card {
+      background: var(--card-bg-light);
+      border: 1px solid var(--card-border-light);
+    }
+    /* gradient helper class if you want the premium trick */
+    .glass-card-gradient {
+      background-image: var(--card-gradient);
+    }
   }
 
   .dark {
