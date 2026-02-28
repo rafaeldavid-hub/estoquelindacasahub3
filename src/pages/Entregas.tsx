@@ -67,13 +67,13 @@ export default function Entregas() {
             <ImageViewer src={p.imageUrl || (p as any).image} alt={p.name} className="h-20 w-20 rounded-lg" />
           ) : (
             <div className="h-20 w-20 rounded-lg bg-muted flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">Imagem</span>
+              <span className="text-slate-700 dark:text-muted-foreground text-sm">Imagem</span>
             </div>
           )}
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className="text-xs sm:text-sm text-muted-foreground">Produto</div>
+          <div className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">Produto</div>
           <div className="font-semibold text-sm sm:text-base truncate">{p.name} ({p.sku})</div>
           <div className="text-xs sm:text-sm mt-2 space-y-1 break-words">
             <div>Endereço: <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.deliveryAddress || "")}`} target="_blank" rel="noreferrer" className="text-primary underline hover:no-underline transition-smooth">{p.deliveryAddress}</a></div>
@@ -166,7 +166,7 @@ export default function Entregas() {
             </div>
           </div>
           {filterDate && (
-            <div className="text-xs sm:text-sm text-muted-foreground">
+            <div className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">
               Mostrando {filteredAndSortedEntregas.length} entrega(s) para a data {new Date(filterDate).toLocaleDateString("pt-BR")}
             </div>
           )}
@@ -178,7 +178,7 @@ export default function Entregas() {
             Entregas Pendentes ({filteredAndSortedEntregas.length})
           </h2>
           {filteredAndSortedEntregas.length === 0 ? (
-            <div className="rounded-lg border bg-card/70 backdrop-blur-md p-3 sm:p-4 text-muted-foreground border-white/20 dark:border-white/10">
+            <div className="rounded-lg border bg-card/70 backdrop-blur-md p-3 sm:p-4 text-slate-700 dark:text-muted-foreground border-white/20 dark:border-white/10">
               {filterDate ? "Nenhuma entrega pendente para essa data." : "Nenhuma entrega pendente."}
             </div>
           ) : (

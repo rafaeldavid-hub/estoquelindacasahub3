@@ -58,7 +58,7 @@ export function Header() {
                   className={`rounded-md px-3 py-2 text-sm font-medium transition-smooth hover:bg-accent ${
                     location.pathname === item.path
                       ? "bg-accent text-accent-foreground"
-                      : "text-muted-foreground cursor-pointer"
+                      : theme === "light" ? "text-slate-700 cursor-pointer dark:text-muted-foreground" : "text-muted-foreground cursor-pointer"
                   }`}
                 >
                   {item.label}
@@ -70,7 +70,7 @@ export function Header() {
                   className={`rounded-md px-3 py-2 text-sm font-medium transition-smooth hover:bg-accent ${
                     location.pathname === item.path
                       ? "bg-accent text-accent-foreground"
-                      : "text-muted-foreground"
+                      : theme === "light" ? "text-slate-700 dark:text-muted-foreground" : "text-muted-foreground"
                   }`}
                 >
                   {item.label}
@@ -108,7 +108,7 @@ export function Header() {
                     className={`rounded-md px-3 py-2 text-sm font-medium transition-smooth hover:bg-accent w-full text-center ${
                       location.pathname === item.path
                         ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground"
+                        : theme === "light" ? "text-slate-700 dark:text-muted-foreground" : "text-muted-foreground"
                     }`}
                   >
                     {item.label}
@@ -121,7 +121,7 @@ export function Header() {
                     className={`rounded-md px-3 py-2 text-sm font-medium transition-smooth hover:bg-accent ${
                       location.pathname === item.path
                         ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground"
+                        : theme === "light" ? "text-slate-700 dark:text-muted-foreground" : "text-muted-foreground"
                     }`}
                   >
                     {item.label}

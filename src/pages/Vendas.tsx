@@ -22,7 +22,7 @@ export default function Vendas() {
         <div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold">Vendas</h1>
-            <p className="text-xs sm:text-sm text-muted-foreground">Ambiente de vendas — informações e ranking</p>
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">Ambiente de vendas — informações e ranking</p>
           </div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
             <select className="px-3 py-2 rounded-md bg-card/70 backdrop-blur-md border border-white/20 dark:border-white/10 transition-smooth text-sm w-full sm:w-auto" value={selectedSeller} onChange={e => setSelectedSeller(e.target.value as any)}>
@@ -30,8 +30,8 @@ export default function Vendas() {
               {SALES_USERS.map(u => <option key={u} value={u}>{u}</option>)}
             </select>
             <div className="bg-card/70 backdrop-blur-md rounded-md px-2 py-1 flex gap-1 border border-white/20 dark:border-white/10 w-full sm:w-auto">
-              <button className={`px-3 py-1 rounded text-sm font-medium transition-smooth flex-1 sm:flex-none ${mode === 'dias' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-accent'}`} onClick={() => setMode('dias')}>Dias</button>
-              <button className={`px-3 py-1 rounded text-sm font-medium transition-smooth flex-1 sm:flex-none ${mode === 'meses' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-accent'}`} onClick={() => setMode('meses')}>Meses</button>
+              <button className={`px-3 py-1 rounded text-sm font-medium transition-smooth flex-1 sm:flex-none ${mode === 'dias' ? 'bg-primary text-primary-foreground' : 'text-slate-700 dark:text-muted-foreground hover:bg-accent'}`} onClick={() => setMode('dias')}>Dias</button>
+              <button className={`px-3 py-1 rounded text-sm font-medium transition-smooth flex-1 sm:flex-none ${mode === 'meses' ? 'bg-primary text-primary-foreground' : 'text-slate-700 dark:text-muted-foreground hover:bg-accent'}`} onClick={() => setMode('meses')}>Meses</button>
             </div>
           </div>
         </div>

@@ -64,7 +64,7 @@ const Produtos = () => {
         <div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="font-display text-2xl sm:text-3xl font-bold">Produtos</h1>
-            <p className="text-xs sm:text-sm text-muted-foreground">Gerencie seu inventário de produtos</p>
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">Gerencie seu inventário de produtos</p>
           </div>
           <Button onClick={() => setOpenAddDialog(true)} className="gap-2 w-full sm:w-auto justify-center sm:justify-start">
             <Plus className="w-4 h-4" />
@@ -108,7 +108,7 @@ const Produtos = () => {
         </div>
 
         <div>
-          <p className="text-xs sm:text-sm text-muted-foreground mb-4">
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground mb-4">
             Mostrando {filteredProducts.length} de {products.length} produtos
           </p>
           <ProductList products={filteredProducts} />

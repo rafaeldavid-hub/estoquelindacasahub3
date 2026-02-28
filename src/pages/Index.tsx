@@ -24,7 +24,7 @@ const Index = () => {
       <div className="container py-4 sm:py-6 space-y-6 sm:space-y-8">
         <div>
           <h1 className="font-display text-2xl sm:text-3xl font-bold">Dashboard</h1>
-          <p className="text-xs sm:text-sm text-muted-foreground">Visão geral</p>
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">Visão geral</p>
         </div>
 
         <StatsCards />
@@ -39,7 +39,7 @@ const Index = () => {
               </Link>
             </div>
             {recentSold.length === 0 ? (
-              <p className="text-xs sm:text-sm text-muted-foreground">Nenhuma venda registrada.</p>
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">Nenhuma venda registrada.</p>
             ) : (
               <div className="space-y-2 sm:space-y-3">
                 {recentSold.map(p => (
@@ -50,7 +50,7 @@ const Index = () => {
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-xs sm:text-sm font-medium truncate">{p.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">
+                      <p className="text-xs text-slate-700 dark:text-muted-foreground truncate">
                         por {p.soldBy} • {p.soldAt ? new Date(p.soldAt).toLocaleDateString("pt-BR") : "—"} • {p.soldUnit}
                       </p>
                     </div>
@@ -69,7 +69,7 @@ const Index = () => {
               <h2 className="font-display text-base sm:text-lg font-semibold">Pedidos a Caminho</h2>
             </div>
             {recentOrdered.length === 0 ? (
-              <p className="text-xs sm:text-sm text-muted-foreground">Nenhum pedido pendente.</p>
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-muted-foreground">Nenhum pedido pendente.</p>
             ) : (
               <div className="space-y-2 sm:space-y-3">
                 {recentOrdered.map(p => (
@@ -80,7 +80,7 @@ const Index = () => {
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-xs sm:text-sm font-medium truncate">{p.name}</p>
-                      <p className="text-xs text-muted-foreground">Destino: {p.unit}</p>
+                      <p className="text-xs text-slate-700 dark:text-muted-foreground">Destino: {p.unit}</p>
                     </div>
                     <div className="self-start sm:self-auto">
                       <StatusBadge status="Pedido" />
