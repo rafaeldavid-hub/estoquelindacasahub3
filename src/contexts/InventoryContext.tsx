@@ -8,7 +8,7 @@ interface InventoryContextType {
   updateProduct: (id: string, product: Partial<Product>, user: SystemUser, reason?: string) => void;
   updateProductStatus: (id: string, status: ProductStatus, user: SystemUser, reason?: string, soldBy?: string, soldUnit?: StoreUnit, orderDetails?: OrderDetails, soldPrice?: number, assistanceData?: { motivo: string; dataContato: string; cliente: string }) => void;
   transferProduct: (id: string, newUnit: StoreUnit, user: SystemUser, reason?: string) => void;
-  setDeliveryInfo: (id: string, address: string, user: SystemUser, referencePoint?: string, type?: "Casa" | "Apartamento", floor?: string, access?: "Escada" | "Elevador") => void;
+  setDeliveryInfo: (id: string, address: string, user: SystemUser, referencePoint?: string, type?: "Casa" | "Apartamento", apartmentNumber?: string, floor?: string, access?: "Escada" | "Elevador") => void;
   markDelivered: (id: string, user: SystemUser) => void;
   scheduleDelivery: (id: string, scheduledDate: string, user: SystemUser) => void;
   deleteProduct: (id: string, user: SystemUser) => boolean;
@@ -110,7 +110,7 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
-  const setDeliveryInfo = useCallback((id: string, address: string, user: SystemUser, referencePoint?: string, type?: "Casa" | "Apartamento", floor?: string, access?: "Escada" | "Elevador") => {
+  const setDeliveryInfo = useCallback((id: string, address: string, user: SystemUser, referencePoint?: string, type?: "Casa" | "Apartamento", apartmentNumber?: string, floor?: string, access?: "Escada" | "Elevador") => {
     const now = new Date().toISOString();
     setProducts(prev => {
       const newProducts: Product[] = prev.map(p => {
@@ -129,6 +129,7 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
           deliveryAddress: address,
           deliveryReferencePoint: referencePoint,
           deliveryType: typedType,
+          deliveryApartmentNumber: apartmentNumber,
           deliveryFloor: floor,
           deliveryAccess: typedAccess,
           deliveryStatus: "Pendente" as const,
@@ -139,7 +140,7 @@ export function InventoryProvider({ children }: { children: ReactNode }) {
       try {
         const updated = newProducts.find(np => np.id === id);
         // eslint-disable-next-line no-console
-        console.log('[Inventory] setDeliveryInfo called', { id, address, user, referencePoint, type, floor, access, updated });
+        console.log('[Inventory] setDeliveryInfo called', { id, address, user, referencePoint, type, apartmentNumber, floor, access, updated });
       } catch (e) {
         // ignore
       }

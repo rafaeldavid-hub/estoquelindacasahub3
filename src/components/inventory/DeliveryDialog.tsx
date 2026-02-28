@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useInventory } from "@/contexts/InventoryContext";
 import { Product } from "@/types/inventory";
+import { RouteViewer } from "./RouteViewer";
 
 interface DeliveryDialogProps {
   product: Product;
@@ -148,21 +149,24 @@ export function DeliveryDialog({ product, open, onClose }: DeliveryDialogProps) 
           )}
 
           {address.trim() && (
-            <div className="mt-2">
-              <Label>Visualização no mapa</Label>
-              <div className="h-48 w-full border rounded-md overflow-hidden mt-2 border-white/20 dark:border-white/10">
-                <iframe title="map" src={embedSrc} width="100%" height="100%" style={{ border: 'none' }} />
+            <div className="mt-2 space-y-3">
+              <div>
+                <Label>Visualização no mapa</Label>
+                <div className="h-48 w-full border rounded-md overflow-hidden mt-2 border-white/20 dark:border-white/10">
+                  <iframe title="map" src={embedSrc} width="100%" height="100%" style={{ border: 'none' }} />
+                </div>
+                <div className="mt-2">
+                  <a
+                    href={mapsLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline hover:no-underline transition-smooth text-sm"
+                  >
+                    Abrir no Google Maps
+                  </a>
+                </div>
               </div>
-              <div className="mt-2">
-                <a
-                  href={mapsLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-primary underline hover:no-underline transition-smooth text-sm"
-                >
-                  Abrir no Google Maps
-                </a>
-              </div>
+              <RouteViewer address={address} productName={product.name} />
             </div>
           )}
         </div>

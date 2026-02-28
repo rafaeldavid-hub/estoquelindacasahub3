@@ -16,7 +16,13 @@ export function SalesHistory({ sales }: { sales: Product[] }) {
                 <div className="text-xs text-muted-foreground">Vendido por <strong>{s.soldBy}</strong> em {s.soldAt ? new Date(s.soldAt).toLocaleString('pt-BR') : '—'}</div>
                 {s.soldPrice !== undefined && <div className="text-sm mt-1 font-semibold">{s.soldPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>}
                 {s.deliveryAddress && (
-                  <div className="text-xs text-muted-foreground mt-1">Entrega: {s.deliveryAddress} • Status: {s.deliveryStatus}</div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Entrega: {s.deliveryAddress}
+                    {s.deliveryType === 'Apartamento' && s.deliveryApartmentNumber && (
+                      <> • Apt. <strong>{s.deliveryApartmentNumber}</strong></>
+                    )}
+                    • Status: {s.deliveryStatus}
+                  </div>
                 )}
               </div>
               <div className="text-xs text-muted-foreground">{s.soldUnit}</div>
