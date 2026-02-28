@@ -130,6 +130,46 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
+## Deploy no Vercel com Credenciais
+
+Para fazer deploy automático no Vercel em tempo real com alterações, siga os passos:
+
+### 1. Obtenha seu token do Vercel
+
+1. Acesse [https://vercel.com/account/tokens](https://vercel.com/account/tokens)
+2. Clique em "Create Token" e defina um nome e um tempo de expiração (ex: 7 dias)
+3. Copie o token gerado (você não poderá visualizá-lo novamente depois)
+
+### 2. Encontre o ID do seu projeto
+
+1. Acesse [https://vercel.com/dashboard](https://vercel.com/dashboard)
+2. Selecione seu projeto e vá para Settings
+3. Copie o "Project ID" e o "Org ID" (se aplicável)
+
+### 3. Configure as variáveis de ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto com as credenciais:
+
+```bash
+VERCEL_TOKEN=seu_token_aqui
+VERCEL_PROJECT_ID=seu_project_id_aqui
+VERCEL_ORG_ID=seu_org_id_aqui
+```
+
+### 4. Faça o deploy
+
+Para fazer deploy em staging:
+```bash
+npm run deploy
+```
+
+Para fazer deploy em produção:
+```bash
+npm run deploy:prod
+```
+
+**Nota:** O arquivo `.env.local` é ignorado pelo git (veja `.gitignore`), portanto suas credenciais não serão expostas.
+
 ## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!
