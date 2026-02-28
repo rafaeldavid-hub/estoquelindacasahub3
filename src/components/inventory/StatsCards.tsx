@@ -25,7 +25,7 @@ export function StatsCards() {
   ];
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-3 grid-cols-3 sm:grid-cols-2 lg:grid-cols-3">
       {cards.map(card => {
         const Icon = iconMap[card.icon];
         // tornar alguns cards clicáveis (status filters ou navegação)
@@ -56,13 +56,13 @@ export function StatsCards() {
             tabIndex={isClickable ? 0 : undefined}
             onClick={isClickable ? handleClick : undefined}
             onKeyDown={isClickable ? (e: React.KeyboardEvent) => { if (e.key === "Enter" || e.key === " ") handleClick(); } : undefined}
-            className={`animate-fade-in rounded-xl border bg-card/70 backdrop-blur-md p-3 sm:p-5 shadow-sm border-white/20 dark:border-white/10 transition-smooth ${isClickable ? "cursor-pointer hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ring" : ""}`}
+            className={`animate-fade-in rounded-xl border bg-card/70 backdrop-blur-md p-2 sm:p-5 shadow-sm border-white/20 dark:border-white/10 transition-smooth ${isClickable ? "cursor-pointer hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ring" : ""}`}
           >
             <div className="flex items-center justify-between">
               <span className="text-xs sm:text-sm font-medium text-muted-foreground">{card.label}</span>
               <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${card.color}`} />
             </div>
-            <p className={`mt-2 font-display text-2xl sm:text-3xl font-bold ${card.color}`}>{card.value}</p>
+            <p className={`mt-2 font-display text-xl sm:text-3xl font-bold ${card.color}`}>{card.value}</p>
           </div>
         );
       })}

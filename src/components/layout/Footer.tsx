@@ -2,7 +2,7 @@ import { useTheme } from "@/hooks/useTheme";
 
 export function Footer() {
   const { theme } = useTheme();
-  const textColor = theme === "light" ? "text-slate-700" : "text-muted-foreground";
+  const textColor = theme === "light" ? "text-black" : "text-muted-foreground";
   
   return (
     <footer className="glass border-t relative z-50">
