@@ -1,5 +1,11 @@
+# Dependencies
 node_modules
 node_modules
+
+# Build output
+dist
+dist-ssr
+*.local
 
 # Variáveis de ambiente
 .env
@@ -10,3 +16,9 @@ node_modules
 # Vercel
 .vercel
 .vercelignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo

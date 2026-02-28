@@ -12,7 +12,7 @@ import Entregas from "./pages/Entregas";
 import Vendas from "./pages/Vendas";
 import NotFound from "./pages/NotFound";
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect, ErrorInfo, ReactNode } from "react";
+import React, { useEffect, ErrorInfo, ReactNode } from "react";
 
 const queryClient = new QueryClient();
 
