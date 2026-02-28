@@ -130,6 +130,8 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
+> **Important:** to run the app locally you must start the dev server (`npm run dev`) and navigate to the URL it prints (e.g. `http://localhost:8081`). Opening `index.html` directly in the browser will show a blank page.
+
 ## Deploy no Vercel com Credenciais
 
 Para fazer deploy automático no Vercel em tempo real com alterações, siga os passos:
