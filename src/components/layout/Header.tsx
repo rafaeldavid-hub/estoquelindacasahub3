@@ -1,8 +1,8 @@
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, Maximize2, Minimize2 } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { Button } from "@/components/ui/button";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { LoginDialog } from "@/components/auth/LoginDialog";
 
@@ -20,6 +20,30 @@ export function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (error) {
+      console.error("Erro ao alternar tela cheia:", error);
+    }
+  };
 
   const handleNavClick = (item: typeof navItems[0]) => {
     if (item.path === "/vendas" && !isAuthenticated) {
@@ -80,6 +104,10 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" onClick={toggleFullscreen} className="h-9 w-9" title={isFullscreen ? "Sair da tela cheia" : "Tela cheia"}>
+              {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+            </Button>
+
             <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-9 w-9">
               {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
