@@ -11,6 +11,11 @@
     transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
   }
 
+  html, body {
+    overflow-x: hidden; /* globally prevent horizontal scroll */
+    width: 100%;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 8%;
